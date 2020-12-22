@@ -1,4 +1,4 @@
-import { React, createRef } from 'react';
+import { React, forwardRef } from 'react';
 
 const Track = () => {
   return (
@@ -31,13 +31,10 @@ const Progress = () => {
 }
 
 
-const ActivityBar = () => {
-  const ref = createRef();
-  return (
-    <Track>
-      <Progress ref={ref} />
-    </Track>
-  );
-}
+const ActivityBar = forwardRef((props, ref) => (
+  <Track>
+    <Progress ref={ref} />
+  </Track>
+));
 
 export default ActivityBar;

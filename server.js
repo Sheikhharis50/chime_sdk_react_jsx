@@ -7,6 +7,7 @@ const fs = require('fs');
 const url = require('url');
 const { v4: uuid } = require('uuid');
 const AWS = require('aws-sdk');
+var cors = require('cors')
 /* eslint-enable */
 
 let hostname = '127.0.0.1';
@@ -39,7 +40,18 @@ const app = process.env.npm_config_app || 'meeting';
 const server = require(protocol).createServer(
   options,
   async (request, response) => {
-    console.log(`request.url: ${request.url}`);
+
+    // Set CORS headers
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Request-Method', '*');
+    response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    response.setHeader('Access-Control-Allow-Headers', '*');
+    if (request.method === 'OPTIONS') {
+      response.writeHead(200);
+      response.end();
+      return;
+    }
+
     log(`${request.method} ${request.url} BEGIN`);
     compression({})(request, response, () => { });
     try {

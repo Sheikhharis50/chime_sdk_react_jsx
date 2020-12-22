@@ -6,36 +6,42 @@ export const title = {
   marginBottom: "1.75rem"
 }
 
-export default function StyledPreviewGroup(props) {
+export const StyledPreviewGroup = (props) => {
   return (
-    <div className="StyledPreviewGroup"
-      style={{
-        marginBottom: "2.5rem"
-      }}
-    />
+    <div className="StyledPreviewGroup">
+      {props.children}
+    </div>
   )
 }
 
-export default function StyledWrapper(props) {
+export const StyledWrapper = (props) => {
   return (
-    <div className="StyledWrapper" />
+    <div className="StyledWrapper" >
+      {props.children}
+    </div>
   )
 }
 
-export default function StyledAudioGroup(props) {
+export const StyledAudioGroup = (props) => {
   return (
-    <div className="StyledAudioGroup" />
+    <div className="StyledAudioGroup" >
+      {props.children}
+    </div>
   )
 }
 
-export default function StyledVideoGroup(props) {
+export const StyledVideoGroup = (props) => {
   return (
-    <div className="StyledVideoGroup" />
+    <div className="StyledVideoGroup" >
+      {props.children}
+    </div>
   )
 }
 
-export default function StyledInputGroup(props) {
+export const StyledInputGroup = (props) => {
   return (
-    <div className="StyledInputGroup" />
+    <div className="StyledInputGroup" >
+      {props.children}
+    </div>
   )
 }

@@ -2,23 +2,23 @@ import routes from '../constants/routes';
 import axios from 'axios';
 import uuid from 'react-uuid'
 
-export const BASE_URL = routes.HOME;
+export const API_URL = 'http://127.0.0.1:8080';
+export const BASE_URL = API_URL + routes.HOME;
 
 export async function fetchMeeting(meetingId, name, region) {
-    const response = await axios.post(
+    const data = await axios.post(
         `${BASE_URL}join?title=${encodeURIComponent(
             meetingId
         )}&name=${encodeURIComponent(name)}${region ? `&region=${encodeURIComponent(region)}` : ''
         }`,
-        {}
     );
-    const data = await response.json();
+    // const data = await response.json();
 
     if (data.error) {
         throw new Error(`Server error: ${data.error}`);
     }
 
-    return data;
+    return data.data.JoinInfo;
 }
 
 export function createGetAttendeeCallback(meetingId) {
@@ -26,15 +26,15 @@ export function createGetAttendeeCallback(meetingId) {
         const attendeeUrl = `${BASE_URL}attendee?title=${encodeURIComponent(
             meetingId
         )}&attendee=${encodeURIComponent(chimeAttendeeId)}`;
-        const res = await axios.get(attendeeUrl);
-        if (!res.ok) {
+        const data = await axios.get(attendeeUrl);
+        if (data.error) {
             throw new Error('Invalid server response');
         }
 
-        const data = await res.json();
+        // const data = await res.json();
 
         return {
-            name: data.AttendeeInfo.Name
+            name: data.data.AttendeeInfo.Name
         };
     };
 }

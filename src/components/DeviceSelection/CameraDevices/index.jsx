@@ -7,8 +7,7 @@ import {
   Label
 } from 'amazon-chime-sdk-component-library-react';
 
-import { title } from '../Styled';
-// import { title, StyledInputGroup } from '../Styled';
+import { title, StyledInputGroup } from '../Styled';
 
 const CameraDevices = () => {
   return (
@@ -16,7 +15,7 @@ const CameraDevices = () => {
       <Heading tag="h2" level={6} css={title}>
         Video
       </Heading>
-      {/* <StyledInputGroup>
+      <StyledInputGroup>
         <CameraSelection />
       </StyledInputGroup>
       <StyledInputGroup>
@@ -25,7 +24,7 @@ const CameraDevices = () => {
       <Label style={{ display: 'block', marginBottom: '.5rem' }}>
         Video preview
       </Label>
-      <PreviewVideo /> */}
+      <PreviewVideo />
     </div>
   );
 };

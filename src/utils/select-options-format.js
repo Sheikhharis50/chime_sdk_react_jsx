@@ -1,9 +1,9 @@
 export default function getFormattedOptionsForSelect(
   jsonObject
 ) {
-  const formattedJSONObject = jsonObject.map(entry => ({
-    value: entry[0],
-    label: String(entry[1]),
+  const formattedJSONObject = Object.entries(jsonObject).map(([key, value]) => ({
+    value: key,
+    label: `${value} - ${key}`
   }));
   return formattedJSONObject;
 }
